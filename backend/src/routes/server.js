@@ -1,10 +1,17 @@
 import express from "express";
 import notesRouter from "./notesRoutes.js";
+import { connectDB } from "../config/db.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 8000;
 
 app.use("/api/notes", notesRouter);
 
-app.listen(8000, () => {
-  console.log("Server is listening on PORT: 8000");
+connectDB();
+
+app.listen(PORT, () => {
+  console.log("Server is listening on PORT:", PORT);
 });
