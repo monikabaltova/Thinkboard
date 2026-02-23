@@ -12,8 +12,8 @@ app.use(express.json());
 
 app.use("/api/notes", notesRouter);
 
-connectDB();
-
-app.listen(PORT, () => {
-  console.log("Server is listening on PORT:", PORT);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("Server is listening on PORT:", PORT);
+  });
 });
