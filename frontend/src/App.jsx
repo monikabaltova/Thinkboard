@@ -6,11 +6,13 @@ import NoteDetailPage from "./pages/NoteDetailPage";
 function App() {
   return (
     <div data-theme="cupcake">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<CreateNote />} />
-        <Route path="/note/:id" element={<NoteDetailPage />} />
-      </Routes>
+      <div className="bg-neutral-700">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create" element={<CreateNote />} />
+          <Route path="/note/:id" element={<NoteDetailPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }
