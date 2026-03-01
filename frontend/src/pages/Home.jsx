@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
+import NoteCard from "../components/NoteCard";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -29,7 +30,17 @@ function Home() {
     <div className="min-h-screen">
       <Navbar />
 
-      {loading && <Loading />}
+      <div className="mx-auto mt-6 max-w-7xl p-4">
+        {loading && <Loading />}
+
+        {notes.length > 0 && (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {notes.map((note) => (
+              <NoteCard key={note._id} note={note} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
