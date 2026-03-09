@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import NoteCard from "../components/NoteCard";
 import api from "../utils/axios";
+import NotesNotFound from "../components/NotesNotFound";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -32,6 +33,8 @@ function Home() {
 
       <div className="mx-auto mt-6 max-w-7xl p-4">
         {loading && <Loading />}
+
+        {notes.length === 0 && <NotesNotFound />}
 
         {notes.length > 0 && (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
