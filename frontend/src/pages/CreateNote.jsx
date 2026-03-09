@@ -1,6 +1,8 @@
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, Axis3D } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import toast from "react-hot-toast";
+import axios from "axios";
 import Loading from "../components/Loading";
 
 function CreateNote() {
@@ -8,7 +10,31 @@ function CreateNote() {
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit() {}
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!title.trim() || !content.trim()) {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await axios.post("http://localhost:8000/api/notes", {
+        title,
+        content,
+      });
+      toast.success("Note created!");
+      navigate("/");
+    } catch (error) {
+      console.log("Error creating note", error);
+      toast.error("Failed to create note");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <div className="bg-neutral min-h-screen">
