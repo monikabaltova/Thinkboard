@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Loading from "../components/Loading";
+import api from "../utils/axios";
 
 function CreateNote() {
   const [title, setTitle] = useState("");
@@ -22,7 +23,7 @@ function CreateNote() {
 
     setIsLoading(true);
     try {
-      await axios.post("http://localhost:8000/api/notes", {
+      await api.post("/notes", {
         title,
         content,
       });

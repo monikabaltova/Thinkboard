@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import NoteCard from "../components/NoteCard";
+import api from "../utils/axios";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -13,10 +13,10 @@ function Home() {
   useEffect(() => {
     async function fetchNotes() {
       try {
-        const res = await axios.get("http://localhost:8000/api/notes");
+        const res = await api.get("/notes");
         setNotes(res.data);
       } catch (error) {
-        console.log("Error fetching notes");
+        console.log("Error fetching notes", error);
         toast.error("Failed to load notes");
       } finally {
         setLoading(false);
