@@ -2,8 +2,6 @@ import { ArrowLeftIcon, Axis3D } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import axios from "axios";
-import Loading from "../components/Loading";
 import api from "../utils/axios";
 
 function CreateNote() {
